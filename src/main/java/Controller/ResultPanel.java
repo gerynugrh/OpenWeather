@@ -1,20 +1,27 @@
+package Controller;
+
 import java.awt.CardLayout;
-import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel {
+public class ResultPanel extends JPanel {
 
   private SearchPanel searchPanel;
   private WeatherDetailsPanel weatherPanel;
+  private CardLayout cardLayout = new CardLayout();
 
-  public MainPanel() {
-    super(new CardLayout());
+  public ResultPanel() {
+    super();
 
+    setLayout(cardLayout);
     searchPanel = new SearchPanel(this);
     weatherPanel = new WeatherDetailsPanel(this);
 
-    add("search", searchPanel);
     add("weather_details", weatherPanel);
+    add("search", searchPanel);
+  }
+
+  public CardLayout getLayoutManager() {
+    return cardLayout;
   }
 
   public void setWeatherLocation() {
