@@ -17,19 +17,19 @@ Pada pembuatan proyek ini struktur package dibuat seperti berikut
 |-- README.md
 |-- settings.gradle
 |-- src
-    |-- main
+    |-- mainDailyWeatherDetail
         |-- java
-            |-- Controller
-            |-- Model
-            |-- Services
-            |-- View
+            |-- app
+            |-- model
+            |-- app.services
+            |-- app.view
         |-- resources
     |-- test 
 ```
 
 Struktur dasar dari proyek ini mengikuti guideline dari Maven sendiri, namun untuk struktur package dalam folder Java ada beberapa konsiderasi yang diperlukan. Konsiderasi pertama adalah saya tidak mengetahui seluas apa cakupan proyek ini.
 
-Oleh karena itu file Java dikelompokkan ke dalam package Controller, Model, Services, View yang pasti ada pada proyek manapun. Dengan ini dalam proses pembuatan aplikasi, tidak akan ada package yang ditambah maupun dikurangi.
+Oleh karena itu file Java dikelompokkan ke dalam package app, model, app.services, app.view yang pasti ada pada proyek manapun. Dengan ini dalam proses pembuatan aplikasi, tidak akan ada package yang ditambah maupun dikurangi.
 
 #### Implemented
 NONE

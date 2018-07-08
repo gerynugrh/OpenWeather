@@ -2,6 +2,11 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'application'
+apply plugin: 'jdepend'
+
+mainClassName = 'app.MainFrame'
+
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -10,8 +15,16 @@ repositories {
     mavenCentral()
 }
 
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'org.apache.commons:commons-text:1.4'
 }
