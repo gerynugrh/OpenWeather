@@ -17,12 +17,14 @@ Pada pembuatan proyek ini struktur package dibuat seperti berikut
 |-- README.md
 |-- settings.gradle
 |-- src
-    |-- mainDailyWeatherDetail
+    |-- main
         |-- java
             |-- app
-            |-- model
-            |-- app.services
-            |-- app.view
+                |-- location
+                |-- search
+                |-- weather
+                    |-- current
+                    |-- daily
         |-- resources
     |-- test 
 ```
@@ -31,11 +33,30 @@ Struktur dasar dari proyek ini mengikuti guideline dari Maven sendiri, namun unt
 
 Oleh karena itu file Java dikelompokkan ke dalam package app, model, app.services, app.view yang pasti ada pada proyek manapun. Dengan ini dalam proses pembuatan aplikasi, tidak akan ada package yang ditambah maupun dikurangi.
 
+### JDepend
+
+| Attr    | app.location | app.search | app.weather | app.weather.current | app.weather.daily |
+| ------- | :----------: | :--------: | :---------: | :-----------------: | :---------------: |
+| TC      | 2            | 5          | 6           | 6                   | 9                 |
+| Ca      | 4            | 0          | 0           | 1                   | 1                 |
+| Ce      | 1            | 8          | 13          | 3                   | 3                 |
+| A       | 0            | 0.2        | 0.17        | 0                   | 0                 |
+| I       | 0.2          | 1          | 1           | 0.75                | 0.75              |
+| D       | 0.8          | 0          | 0           | 0.25                | 0.25              |
+
+### Instalation
+```bash
+gradlew run
+```
+
 #### Implemented
-NONE
-#### Ongoing
 * Search
 * Current Weather
+* Daily Forecast
+#### Ongoing
 * Set default location
 ### Cancelled
 NONE
+
+### Attribution
+[Weather Icon Pack - bqlqn](https://www.flaticon.com/packs/weather-138)
