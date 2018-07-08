@@ -2,8 +2,9 @@ package app.location;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class City {
+public class City implements Serializable {
 
   @SerializedName("id")
   @Expose

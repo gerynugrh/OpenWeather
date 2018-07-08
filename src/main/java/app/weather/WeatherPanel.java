@@ -7,11 +7,19 @@ import app.weather.daily.DailyWeatherSummary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +30,7 @@ import java.util.TimeZone;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -47,14 +56,27 @@ public class WeatherPanel extends JPanel {
   private JLabel humidityLabel = new JLabel();
   private JLabel visibilityLabel = new JLabel();
   private JLabel pressureLabel = new JLabel();
+  private JButton pinButton = new JButton("Pin Location");
+
+  private static final String PREF_LOCATION = ("./src/main/resources/data/def_city");
+  private static final String PIN_RES_LOCATION = ("./src/main/resources/icon/push-pin.png");
 
   public WeatherPanel() {
     super(new FlowLayout());
+    initLayout();
+    initLabelView();
+
+    City pinnedCity = getPinnedCity();
+    if (pinnedCity != null) {
+      weatherLocation = pinnedCity;
+      updateWeather();
+    }
+  }
+
+  private void initLayout() {
     setLayout(new GridBagLayout());
     setBackground(Color.WHITE);
     GridBagConstraints c = new GridBagConstraints();
-
-    locationLabel.setToolTipText("Pin location");
 
     JPanel currentWeatherPanel = new JPanel();
     currentWeatherPanel.setLayout(new BoxLayout(currentWeatherPanel, BoxLayout.Y_AXIS));
@@ -83,10 +105,24 @@ public class WeatherPanel extends JPanel {
 
     currentWeatherPanel.add(pressureVisibilityContainer);
 
+    pinButton.setVisible(false);
+    pinButton.setBorderPainted(false);
+    pinButton.setBackground(Color.WHITE);
+    pinButton.setFocusPainted(false);
+    pinButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+    ImageIcon imageIcon = new ImageIcon(PIN_RES_LOCATION);
+    Image image = imageIcon.getImage();
+    Image newImg = image.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+    pinButton.setIcon(new ImageIcon(newImg));
+    pinButton.addActionListener(e -> {
+      pinCurrentCity();
+    });
+
     JPanel currentWeatherPanelContainer = new JPanel();
     currentWeatherPanelContainer.setLayout(new BorderLayout());
     currentWeatherPanelContainer.add(currentWeatherPanel, BorderLayout.SOUTH);
     currentWeatherPanelContainer.setBackground(Color.WHITE);
+    currentWeatherPanelContainer.add(pinButton, BorderLayout.NORTH);
     currentWeatherPanel.setBackground(Color.WHITE);
 
     c.fill = GridBagConstraints.BOTH;
@@ -101,7 +137,9 @@ public class WeatherPanel extends JPanel {
     c.gridx = 0;
     c.gridy = 1;
     add(initDailyWeatherView(), c);
+  }
 
+  private void initLabelView() {
     temperatureLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     temperatureLabel.setFont(new Font(temperatureLabel.getFont().getName(), Font.PLAIN, 80));
     temperatureLabel.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -123,6 +161,38 @@ public class WeatherPanel extends JPanel {
     pressureLabel.setBackground(Color.WHITE);
     visibilityLabel.setBorder(new EmptyBorder(2, 10, 5, 10));
     visibilityLabel.setBackground(Color.WHITE);
+  }
+
+  private void pinCurrentCity() {
+    FileOutputStream fileStream = null;
+    try {
+      fileStream = new FileOutputStream(new File(PREF_LOCATION));
+      ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+
+      objectStream.writeObject(weatherLocation);
+      objectStream.close();
+      fileStream.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private City getPinnedCity() {
+    FileInputStream fileInputStream = null;
+    try {
+      fileInputStream = new FileInputStream(new File(PREF_LOCATION));
+      ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+      City currentCity = (City) objectInputStream.readObject();
+      objectInputStream.close();
+      fileInputStream.close();
+
+      return currentCity;
+    } catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    return null;
   }
 
   private JPanel initDailyWeatherView() {
@@ -239,6 +309,7 @@ public class WeatherPanel extends JPanel {
     humidityLabel.setText("Humidity " + currentWeatherDetail.getMain().getHumidity() + "%");
     visibilityLabel.setText("Visibility  " + currentWeatherDetail.getVisibility() / 1000 + " km");
     pressureLabel.setText("Pressure  " + currentWeatherDetail.getMain().getPressure() + " hPa");
+    pinButton.setVisible(true);
   }
 
   private void updateDailyWeatherDetailView(DailyWeatherDetail dailyWeatherDetail) {
