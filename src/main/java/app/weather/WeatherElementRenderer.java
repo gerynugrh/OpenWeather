@@ -1,6 +1,6 @@
-package app.weather.daily;
+package app.weather;
 
-import app.weather.WeatherUtils;
+import app.weather.daily.DailyWeatherSummary;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
-public class DailyWeatherElementRenderer extends JPanel implements
+public class WeatherElementRenderer extends JPanel implements
     ListCellRenderer<DailyWeatherSummary> {
 
   private JLabel dateLabel = new JLabel();
@@ -28,7 +28,7 @@ public class DailyWeatherElementRenderer extends JPanel implements
   private JLabel lowTempLabel = new JLabel();
   private JLabel weatherDescLabel = new JLabel();
 
-  public DailyWeatherElementRenderer() {
+  public WeatherElementRenderer() {
     setLayout(new GridBagLayout());
     setBorder(new EmptyBorder(15, 15, 15, 15));
     setBackground(Color.WHITE);

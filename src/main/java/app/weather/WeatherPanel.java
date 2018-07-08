@@ -3,7 +3,6 @@ package app.weather;
 import app.weather.current.CurrentWeatherDetail;
 import app.weather.daily.DailyWeather;
 import app.weather.daily.DailyWeatherDetail;
-import app.weather.daily.DailyWeatherElementRenderer;
 import app.weather.daily.DailyWeatherSummary;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -133,7 +132,7 @@ public class WeatherPanel extends JPanel {
     dailyWeatherPanel.setBackground(Color.WHITE);
 
     DefaultListModel<DailyWeatherSummary> defaultListModel = new DefaultListModel<>();
-    dailyWeatherJList.setCellRenderer(new DailyWeatherElementRenderer());
+    dailyWeatherJList.setCellRenderer(new WeatherElementRenderer());
     dailyWeatherJList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
     dailyWeatherJList.setModel(defaultListModel);
     dailyWeatherJList.setVisibleRowCount(-1);
