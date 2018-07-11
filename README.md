@@ -1,3 +1,5 @@
+![](https://ibb.co/dwmOMo]
+
 ### API
 
 API merupakan singkatan dari _application programming interface_, atau dalam bahasa manusia dapat diartikan sebagai penjembatan dalam sisi pemrograman aplikasi. Agar lebih jelas, kita dapat mengartikan API sebagai segala hal yang memberikan abstraksi pada suatu proses. 
