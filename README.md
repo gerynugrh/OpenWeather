@@ -1,4 +1,4 @@
-![](https://image.ibb.co/gtEXE8/open_weather.gif]
+![](https://thumbs.gfycat.com/BeautifulNervousGalapagosalbatross-size_restricted.gif]
 
 ### API
 
