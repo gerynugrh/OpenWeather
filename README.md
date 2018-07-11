@@ -1,4 +1,4 @@
-!(image)[https://thumbs.gfycat.com/BeautifulNervousGalapagosalbatross-size_restricted.gif]
+![image](https://thumbs.gfycat.com/BeautifulNervousGalapagosalbatross-size_restricted.gif)
 
 ### API
 
