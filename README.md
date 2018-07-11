@@ -1,5 +1,3 @@
-<iframe src='https://gfycat.com/ifr/BeautifulNervousGalapagosalbatross' frameborder='0' scrolling='no' width='1072' height='654' allowfullscreen></iframe>
-
 ### API
 
 API merupakan singkatan dari _application programming interface_, atau dalam bahasa manusia dapat diartikan sebagai penjembatan dalam sisi pemrograman aplikasi. Agar lebih jelas, kita dapat mengartikan API sebagai segala hal yang memberikan abstraksi pada suatu proses. 
@@ -45,6 +43,10 @@ Oleh karena itu file Java dikelompokkan ke dalam package app, model, app.service
 | A       | 0            | 0.2        | 0.17        | 0                   | 0                 |
 | I       | 0.2          | 1          | 1           | 0.75                | 0.75              |
 | D       | 0.8          | 0          | 0           | 0.25                | 0.25              |
+
+
+<div style='position:relative;padding-bottom:54%'><iframe src='https://gfycat.com/ifr/BeautifulNervousGalapagosalbatross' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0' allowfullscreen></iframe></div>
+
 
 ### Instalation
 ```bash
