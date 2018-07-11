@@ -1,4 +1,4 @@
-![](https://ibb.co/dwmOMo]
+![](https://image.ibb.co/gtEXE8/open_weather.gif]
 
 ### API
 
